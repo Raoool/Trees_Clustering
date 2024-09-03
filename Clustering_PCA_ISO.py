@@ -28,7 +28,7 @@ def ISO(X, max_iter=15, n_clusters=15):
     return cluster_labels
 
 # Loading masked image
-image_path = '/W/team/rshah/AusGrid_Clustering/data/processed/masked_image_April_12th.tif'
+image_path = 'masked_image_April_12th.tif'
 dataset = gdal.Open(image_path)
 bands = [dataset.GetRasterBand(i).ReadAsArray() for i in range(1, dataset.RasterCount + 1)]
 data = np.stack(bands, axis=-1)
@@ -53,7 +53,7 @@ cluster_labels = ISO(X_pca, max_iter=10, n_clusters=n_clusters)
 cluster_labels_image = cluster_labels.reshape(rows, cols)
 
 # Creating a new GeoTIFF file to save the classified raster image
-classified_image_path = '/W/team/rshah/AusGrid_Clustering/data/processed/ISO_classified_image_april11th_2ndrun.tif'
+classified_image_path = '/ISO_classified_image_april11th_2ndrun.tif'
 
 # Defining metadata for the new GeoTIFF file
 driver = gdal.GetDriverByName('GTiff')
